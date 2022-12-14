@@ -1,7 +1,18 @@
-import 'package:band_name/screens/home_screen.dart';
+import 'package:band_name/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:band_name/services/services.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(
+  MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => SocketServices(),) ],
+  child: const MyApp(),
+  ),
+);
+
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,9 +22,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute:HomeScreen().ruta ,
+      initialRoute: HomeScreen().ruta ,
       routes: {
         HomeScreen().ruta:(context) => HomeScreen(),
+     const ServerScreen().ruta:(context) =>const ServerScreen(),
       },
       
     );
